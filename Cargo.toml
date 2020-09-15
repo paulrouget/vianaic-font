@@ -1,0 +1,10 @@
+[package]
+name = "vianaic-gen"
+version = "0.1.0"
+authors = ["Paul Rouget <me@paulrouget.com>"]
+edition = "2018"
+
+[dependencies]
+sxd-document = "0.3"
+sxd-xpath = "0.4"
+inline-python = "0.6"
