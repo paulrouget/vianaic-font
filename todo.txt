@@ -1,5 +1,4 @@
-y @ANY bottom_less_y
-double "
-end of word, LEFT
-everything into one python file
-… migrate to Rust???
+- y @ANY bottom_less_y
+- double "
+- end of word, LEFT
+- extract rule file from rust code

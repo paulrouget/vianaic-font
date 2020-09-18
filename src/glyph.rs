@@ -28,7 +28,7 @@ pub fn create_all() -> Vec<VianaicGlyph> {
         .collect()
 }
 
-const GLYPHS: [(&'static str, &'static str); 62] = [
+const GLYPHS: [(&'static str, &'static str); 63] = [
     ("a", "a"),
     ("b", "_b_"),
     ("c", "_c_"),
@@ -66,6 +66,7 @@ const GLYPHS: [(&'static str, &'static str); 62] = [
     ("S", "s_"),
     ("T", "t_"),
     ("W", "w_"),
+    ("Y", "_y"),
     ("exclamdown", "ch_"),
     ("cent", "_ch"),
     ("sterling", "th_"),
