@@ -107,51 +107,12 @@ fn main() {
         .map(|g| g.name)
         .collect();
 
-    let rules = format!(
-        r#"
-	languagesystem DFLT dflt;
-	languagesystem latn dflt;
-
-	@ANY=[{class_any}];
-	@RIGHT=[{class_right}];
-	@LEFT=[{class_left}];
-	@SWAPPABLE_RIGHT=[{class_swappable_right}];
-	@SWAPPABLE_LEFT=[{class_swappable_left}];
-
-	feature liga {{
-	    sub _c_ h_ by ch_;
-	    sub t_ h_ by th_;
-	    sub s_ h_ by sh_;
-	    sub g_ h_ by gh_;
-	    sub _n g_ by _ng;
-	    sub w_ h_ by wh_;
-	    sub p_ h_ by ph_;
-
-	    # Doesn't work so well in a word
-
-	    ignore sub @ANY a' _n' _d_';
-	    ignore sub a' _n' _d_' @ANY;
-	    sub a' _n' _d_' by and;
-
-	    ignore sub @ANY t_' h_' e_';
-	    ignore sub t_' h_' e_' @ANY;
-	    sub t_' h_' e_' by the;
-	}} liga;
-
-	feature kern {{
-	    position @RIGHT' @LEFT -100;
-        }} kern;
-
-	feature calt {{
-	    sub @RIGHT @SWAPPABLE_RIGHT' by @SWAPPABLE_LEFT;
-	}} calt;
-    "#,
-        class_any = class_any.join(" "),
-        class_right = class_right.join(" "),
-        class_left = class_left.join(" "),
-        class_swappable_right = class_swappable_right.join(" "),
-        class_swappable_left = class_swappable_left.join(" "),
-    );
+    let rules = std::fs::read_to_string("./rules.fea").expect("Something went wrong reading the file");
+    let rules = str::replace(&rules, "CLASS_ANY", &class_any.join(" "));
+    let rules = str::replace(&rules, "CLASS_RIGHT", &class_right.join(" "));
+    let rules = str::replace(&rules, "CLASS_LEFT", &class_left.join(" "));
+    let rules = str::replace(&rules, "CLASS_SWAPPABLE_RIGHT", &class_swappable_right.join(" "));
+    let rules = str::replace(&rules, "CLASS_SWAPPABLE_LEFT", &class_swappable_left.join(" "));
 
     // DEBUG:
     // println!("{}", rules);
