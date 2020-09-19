@@ -106,6 +106,7 @@ fn main() {
         .filter(|g| g.left && g.swappable)
         .map(|g| g.name)
         .collect();
+    let double: Vec<String> = all.iter().filter(|g| g.right && g.name.len() == 2).map(|g| format!("sub {} {}' by double;", g.name, g.name)).collect();
 
     let rules = std::fs::read_to_string("./rules.fea").expect("Something went wrong reading the file");
     let rules = str::replace(&rules, "CLASS_ANY", &class_any.join(" "));
@@ -113,6 +114,7 @@ fn main() {
     let rules = str::replace(&rules, "CLASS_LEFT", &class_left.join(" "));
     let rules = str::replace(&rules, "CLASS_SWAPPABLE_RIGHT", &class_swappable_right.join(" "));
     let rules = str::replace(&rules, "CLASS_SWAPPABLE_LEFT", &class_swappable_left.join(" "));
+    let rules = str::replace(&rules, "DOUBLE", &double.join("\n"));
 
     // DEBUG:
     // println!("{}", rules);
