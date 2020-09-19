@@ -19,10 +19,11 @@ feature liga {
 
 feature kern {
   position @RIGHT' @LEFT -100;
+  position _e @ANY -100;
 } kern;
 
 feature calt {
-  DOUBLE
+  DOUBLE # sub *_ *_' by *_ ";
 
   ignore sub @ANY a' _n' _d_';
   ignore sub a' _n' _d_' @ANY;
